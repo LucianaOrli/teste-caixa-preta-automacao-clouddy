@@ -6,6 +6,7 @@
 
  
 Este projeto apresenta o relatório técnico e os scripts de teste do App ClouDDy.
+
 🚀 Tecnologias e Ferramentas
 * **S.O.:** Linux (Ubuntu/Debian)
 * **Linguagem:** Python 3.x
@@ -37,9 +38,5 @@ Para reproduzir os testes e a automação de fumaça em ambiente Linux:
 * **FALHA:** Crash do sistema em 4K e travamento offline (CT04 e CT05).
 
 
-🚀 Tecnologias e Ferramentas
-* **S.O.:** Linux (Ubuntu/Debian)
-* **Linguagem:** Python 3.x
-* **Framework:** Pytest / Playwright
-* **Ambiente:** Android SDK / ADB / Emulador x86_64
+
 
