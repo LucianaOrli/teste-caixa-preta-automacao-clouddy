@@ -1,9 +1,10 @@
+ Teste Funcional do tipo Caixa Preta - Automação de fumaça
+
+
 🚀Projeto de Teste de Software - App ClouDDy
 "Este projeto aplica a técnica de Caixa Preta através de uma suíte de Testes de Fumaça (Smoke Tests) automatizados, garantindo que as funcionalidades críticas do ClouDDy (Instalação e Boot) estejam estáveis antes de prosseguir para testes mais profundos."
 
  
- Teste Funcional do tipo Caixa Preta - Automação de fumaça
-
 Este projeto apresenta o relatório técnico e os scripts de teste do App ClouDDy.
 🚀 Tecnologias e Ferramentas
 * **S.O.:** Linux (Ubuntu/Debian)
