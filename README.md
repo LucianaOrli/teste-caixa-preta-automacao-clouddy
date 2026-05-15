@@ -1,38 +1,33 @@
- 🚀 Teste Funcional do tipo Caixa Preta - Automação de Fumaça
-    **Projeto de Teste de Software - App ClouDDy**
+ 📑 Relatório Técnico de Validação Funcional e Estabilidade — ClouDDy Mobile
+ 
+
+ 📋 1. Objetivo do Teste
+Validar o comportamento funcional inicial do aplicativo ClouDDy em ambiente Android, priorizando cenários críticos relacionados à instalação, segurança, validação de entrada, estabilidade operacional e resiliência em condições adversas de infraestrutura de rede.
 
 
-Este projeto aplica a técnica de Caixa Preta através de uma suíte de Testes de Fumaça (Smoke Tests) automatizados, apresentando o relatório técnico e a validação da integridade lógica do aplicativo ClouDDy em ambiente mobile.
+ 💎 2. Stack de Ferramentas e Infraestrutura
+* **Sistema Operacional de Execução:** Linux (Ubuntu/Debian Enterprise)
+* **Linguagem de Automação:** Python 3.x
+* **Framework de Orquestração:** Pytest 
+* **Ambiente de Emulação:** Android SDK / ADB (Android Debug Bridge) / Emulador x86_64
 
-
- 🚀 Tecnologias e Ferramentas Utilizadas
-* **S.O.:** Linux (Ubuntu/Debian)
-* **Linguagem:** Python 3.x
-* **Framework:** Pytest
-* **Ambiente:** Android SDK / ADB (Android Debug Bridge) / Emulador x86_64
-
-
- 🚀 Execução do Projeto
-
-Para reproduzir os testes e a automação de fumaça em ambiente Linux:
-
-1. Instale o APK via terminal: `adb install clouddy.apk`
-2. Execute a suíte de testes: `pytest tests/`
 
  
- 📊 Relatório de Testes (Matriz de Resultados)
+ 🎯 3. Estratégia de Teste & Análise de Risco
+Os cenários executados foram priorizados estritamente com base no **risco funcional** e no **impacto operacional ao usuário final**, mapeados na matriz abaixo:
 
-| ID | Cenário | Resultado | Classificação | Justificativa |
-| :--- | :--- | :--- | :--- | :--- |
-| **CT01** | Instalação e Boot | Passou | Caminho Feliz | Sucesso na instalação via ADB no Linux. |
-| **CT02** | Segurança de Pasta | Falhou | **ERRO** | Erro humano: Omissão de senha no design. |
-| **CT03** | Validação de URL | Falhou | **DEFEITO** | Bug no código: Aceita links malformados. |
-| **CT04** | Estresse Vídeo 4K | Falhou | **FALHA** | O sistema encerra (Crash) durante o uso. |
-| **CT05** | Tratamento Offline | Falhou | **FALHA** | O sistema trava (ANR) sem dar retorno. |
+| Cenário sob Análise | Impacto Técnico Detectado | Classificação de Risco |
+| :--- | :--- | :--- |
+| **Segurança de Pasta** | Possível exposição indevida de conteúdo sensível do usuário | **Alto** |
+| **Validação de URL** | Risco de inconsistência sistêmica e injeção de entradas inválidas | **Médio** |
+| **Reprodução de Mídia** | Comprometimento total da estabilidade operacional da thread principal | **Crítico** |
+| **Tratamento Offline** | Degradação severa da experiência do usuário por travamento de interface | **Alto** |
 
 
+ 🚀 4. Execução e Reprodutibilidade da Suíte
 
-🧠 Glossário ISTQB Aplicado
-* **ERRO:** Omissão de requisitos de segurança (CT02). Uma ação humana incorreta na fase de design.
-* **DEFEITO:** Lógica de validação de URL incorreta no código (CT03). O "bug" físico escrito no sistema.
-* **FALHA:** Crash do sistema em 4K e travamento offline (CT04 e CT05). O comportamento incorreto visível durante a execução do app.
+Para reproduzir os testes automatizados e o Smoke Test em ambiente Linux:
+
+1. Efetue a instalação do artefato via terminal:
+   ```bash
+   adb install clouddy.apk
