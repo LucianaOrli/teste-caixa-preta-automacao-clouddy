@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Relatório de Testes - ClouDDy</title>
+    <style>
+        body { font-family: sans-serif; background: #f4f6f9; color: #333; padding: 20px; }
+        .box { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); max-width: 800px; margin: 0 auto; }
+        h1 { color: #1a365d; border-bottom: 2px solid #1a365d; padding-bottom: 10px; }
+        .badge { padding: 4px 8px; border-radius: 4px; font-weight: bold; color: white; }
+        .fail { background: #e53e3e; } .pass { background: #38a169; }
+        pre { background: #1a202c; color: #a0aec0; padding: 10px; border-radius: 4px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>📊 Relatório Técnico de QA - ClouDDy</h1>
+        <p><strong>Responsável:</strong> Luciana | <strong>Data:</strong> 17 de Maio de 2026</p>
+        <p><strong>Aparelho Homologado:</strong> Motorola (ID: ZF5252JKFQ)</p>
+        <hr>
+        <h3>Resultados Rápidos:</h3>
+        <ul>
+            <li>CT01: Inicialização -> <span class="badge pass">PASSOU</span></li>
+            <li>CT02: Segurança de Diretórios -> <span class="badge fail">FALHOU</span> (Defeito)</li>
+            <li>CT03: Validação de URL -> <span class="badge fail">FALHOU</span> (Defeito)</li>
+            <li>CT04: Reprodução 4K -> <span class="badge fail">FALHOU</span> (Falha Crítica - Crash)</li>
+            <li>CT05: Resiliência Offline -> <span class="badge fail">FALHOU</span> (Falha Crítica - ANR)</li>
+        </ul>
+        <h3>Evidência de Log de Erro (Logcat):</h3>
+        <pre>Fatal Exception SIGSEGV on Main Thread. Heap Exhausted at 4K. ANR Input dispatching timed out.</pre>
+    </div>
+</body>
+</html>
