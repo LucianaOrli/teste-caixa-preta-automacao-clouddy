@@ -49,14 +49,13 @@ DEFEITO: Imperfeição lógica ou estrutural existente na aplicação.
 FALHA: Manifestação visível de quebra operacional em tempo de execução.
 
 
-ID,Cenário de Teste,Criticidade,Resultado,Classificação ISTQB,Impacto Operacional
-CT01, Instalação e Inicialização,Baixa,PASSOU,SUCESSO,Ambiente estável em uso inicial
-CT02, Segurança de Pasta,Alta,FALHOU,DEFEITO,Bypass de senha e exposição de dados
-CT03, Validação de URL,Média,FALHOU,DEFEITO,Inconsistência por payloads inválidos
-CT04, Stress Multimídia 4K,Crítica,FALHOU,FALHA,Crash abrupto do App (SIGSEGV)
-CT05, Resiliência Offline,Alta,FALHOU,FALHA,Travamento de interface (Estado ANR)
-CT05-A, Interferência Operacional, N/A,IDENTIFICADO,ERRO,Wi-Fi reativado antes do fim do script
-
+ID,  Cenário de Teste, Criticidade, Resultado, Classificação ISTQB, Impacto Operacional
+CT01, Instalação e Inicialização, Baixa, PASSOU, SUCESSO, Ambiente estável em uso inicial
+CT02, Segurança de Pasta, Alta, FALHOU, DEFEITO,  Bypass de senha e exposição de dados
+CT03, Validação de URL, Média, FALHOU, DEFEITO,  Inconsistência por payloads inválidos
+CT04, Stress Multimídia 4K, Crítica, FALHOU,F ALHA, Crash abrupto do App (SIGSEGV)
+CT05, Resiliência Offline, Alta, FALHOU, FALHA, Travamento de interface (Estado ANR)
+CT05-A, Interferência Operacional,N /A, IDENTIFICADO, ERRO, Wi-Fi reativado antes do fim do script
 
 ⚠️ Nota de Governança sobre o CT05-A: O evento de rede foi classificado estritamente como ERRO (interferência humana externa) e isolado para não mascarar a real qualidade do software sob teste.
 
