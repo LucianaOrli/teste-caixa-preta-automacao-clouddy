@@ -153,13 +153,13 @@ Inicialização ➔ Deploy APK via ADB ➔ Execução Pytest ➔ Monitoramento L
 
 
 
- 📸 Evidências de Execução (Artefatos de QA)
+ 📸 Evidências de Execução 
 
-A suíte de automação gerou os artefatos reais de homologação que estão publicados na raiz deste repositório para auditoria técnica:
+A suíte de automação gerou os artefatos de homologação que estão publicados na raiz deste repositório:
 
-* **📊 Relatórios de Execução:** [report.html](./report.html) / [evidence.relatório.html](./evidence.relatório.html) *(Dashboards interativos com o status das asserções do Pytest).*
-* **📋 Captura de Logs do Sistema:** [logcat.txt](./logcat.txt) *(Dump real do Android Logcat isolando o crash SIGSEGV do CT04 e o travamento ANR do CT05).*
-* **🖼️ Evidências Visuais (Hardware Físico):** [1.evidence.moto.png](./1.evidence.moto.png) e [2.evidence.moto.png](./2.evidence.moto.png) *(Prints reais capturados diretamente do dispositivo Motorola durante os estados de falha).*
+* **Relatórios de Execução:** [report.html](./report.html) / [evidence.relatório.html](./evidence.relatório.html) *(Dashboards interativos com o status das asserções do Pytest).*
+* ** Captura de Logs do Sistema:** [logcat.txt](./logcat.txt) *(Dump real do Android Logcat isolando o crash SIGSEGV do CT04 e o travamento ANR do CT05).*
+* **Evidências Visuais (Hardware Físico):** [1.evidence.moto.png](./1.evidence.moto.png) e [2.evidence.moto.png](./2.evidence.moto.png) *(Prints reais capturados diretamente do dispositivo Motorola durante os estados de falha).*
 
 
 ***Conclusão Executiva Final***
