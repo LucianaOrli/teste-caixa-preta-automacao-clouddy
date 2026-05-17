@@ -152,6 +152,16 @@ Plaintext
 Inicialização ➔ Deploy APK via ADB ➔ Execução Pytest ➔ Monitoramento Logcat ➔ Captura de Evidências ➔ Geração do Relatório HTML
 
 
+
+ 📸 Evidências de Execução (Artefatos de QA)
+
+A suíte de automação gerou os artefatos reais de homologação que estão publicados na raiz deste repositório para auditoria técnica:
+
+* **📊 Relatórios de Execução:** [report.html](./report.html) / [evidence.relatório.html](./evidence.relatório.html) *(Dashboards interativos com o status das asserções do Pytest).*
+* **📋 Captura de Logs do Sistema:** [logcat.txt](./logcat.txt) *(Dump real do Android Logcat isolando o crash SIGSEGV do CT04 e o travamento ANR do CT05).*
+* **🖼️ Evidências Visuais (Hardware Físico):** [1.evidence.moto.png](./1.evidence.moto.png) e [2.evidence.moto.png](./2.evidence.moto.png) *(Prints reais capturados diretamente do dispositivo Motorola durante os estados de falha).*
+
+
 ***Conclusão Executiva Final***
 
 O aplicativo ClouDDy demonstra maturidade funcional satisfatória para fluxos básicos e de instalação, mas não possui resiliência ou segurança lógica adequadas para publicação em ambiente de produção.
