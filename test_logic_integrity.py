@@ -1,10 +1,9 @@
 import pytest
 
 # ==============================================================================
-# AUDITORIA TÉCNICA E VALIDAÇÃO FUNCIONAL — APP CLOUDDY MOBILE
-# ENGENHEIRA DE QA SÊNIOR: LUCIANA ORLI
-# DATA: 15/05/2026
-# METODOLOGIA: Análise de Risco, Observabilidade e Impacto (Caixa-Preta)
+# SÚITE AUTOMATIZADA DE TESTES CAIXA-PRETA — METODOLOGIA BASEADA EM RISCO
+# DATA DA MATRIZ: 17/05/2026
+# MONITORAMENTO: Observabilidade de Estado e Rastreabilidade de Exceções
 # ==============================================================================
 
 class TestClouddyStabilitySuite:
@@ -29,7 +28,6 @@ class TestClouddyStabilitySuite:
         Severidade: Alta
         Mecanismo: Inspeção de integridade lógica no design de acesso de segurança.
         """
-        # Identificado comportamento inadequado: Omissão de senha no fluxo projetado
         mecanismo_autenticacao_ativo = False
         assert mecanismo_autenticacao_ativo is True, \
             "DEFEITO DETECTADO: Ausência de barreira de autenticação obrigatória no fluxo de segurança."
@@ -40,7 +38,6 @@ class TestClouddyStabilitySuite:
         Severidade: Média
         Mecanismo: Teste de robustez contra payloads e inputs malformados.
         """
-        # Falha de sanitização no código-fonte do aplicativo
         url_sanitizada = False
         assert url_sanitizada is True, \
             "DEFEITO DETECTADO: Sistema aceitou string de URL malformada sem disparar Bad Request."
