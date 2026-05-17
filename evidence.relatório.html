@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<!-- saved from url=(0077)file:///home/Luciana/Documentos/1.Teste.Funcional.clouDDY.Relat%C3%B3rio.html -->
+<html class="translated-ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title id="head-title">relatório.html</title>
+      <style type="text/css">body {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  /* do not increase min-width as some may use split screens */
+  min-width: 800px;
+  color: #999;
+}
+
+h1 {
+  font-size: 24px;
+  color: black;
+}
+
+h2 {
+  font-size: 16px;
+  color: black;
+}
+
+p {
+  color: black;
+}
+
+a {
+  color: #999;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+/******************************
+ * SUMMARY INFORMATION
+ ******************************/
+#environment td {
+  padding: 5px;
+  border: 1px solid #e6e6e6;
+  vertical-align: top;
+}
+#environment tr:nth-child(odd) {
+  background-color: #f6f6f6;
+}
+#environment ul {
+  margin: 0;
+  padding: 0 20px;
+}
+
+/******************************
+ * TEST RESULT COLORS
+ ******************************/
+span.passed,
+.passed .col-result {
+  color: green;
+}
+
+span.skipped,
+span.xfailed,
+span.rerun,
+.skipped .col-result,
+.xfailed .col-result,
+.rerun .col-result {
+  color: orange;
+}
+
+span.error,
+span.failed,
+span.xpassed,
+.error .col-result,
+.failed .col-result,
+.xpassed .col-result {
+  color: red;
+}
+
+.col-links__extra {
+  margin-right: 3px;
+}
+
+/******************************
+ * RESULTS TABLE
+ *
+ * 1. Table Layout
+ * 2. Extra
+ * 3. Sorting items
+ *
+ ******************************/
+/*------------------
+ * 1. Table Layout
+ *------------------*/
+#results-table {
+  border: 1px solid #e6e6e6;
+  color: #999;
+  font-size: 12px;
+  width: 100%;
+}
+#results-table th,
+#results-table td {
+  padding: 5px;
+  border: 1px solid #e6e6e6;
+  text-align: left;
+}
+#results-table th {
+  font-weight: bold;
+}
+
+/*------------------
+ * 2. Extra
+ *------------------*/
+.logwrapper {
+  max-height: 230px;
+  overflow-y: scroll;
+  background-color: #e6e6e6;
+}
+.logwrapper.expanded {
+  max-height: none;
+}
+.logwrapper.expanded .logexpander:after {
+  content: "collapse [-]";
+}
+.logwrapper .logexpander {
+  z-index: 1;
+  position: sticky;
+  top: 10px;
+  width: max-content;
+  border: 1px solid;
+  border-radius: 3px;
+  padding: 5px 7px;
+  margin: 10px 0 10px calc(100% - 80px);
+  cursor: pointer;
+  background-color: #e6e6e6;
+}
+.logwrapper .logexpander:after {
+  content: "expand [+]";
+}
+.logwrapper .logexpander:hover {
+  color: #000;
+  border-color: #000;
+}
+.logwrapper .log {
+  min-height: 40px;
+  position: relative;
+  top: -50px;
+  height: calc(100% + 50px);
+  border: 1px solid #e6e6e6;
+  color: black;
+  display: block;
+  font-family: "Courier New", Courier, monospace;
+  padding: 5px;
+  padding-right: 80px;
+  white-space: pre-wrap;
+}
+
+div.media {
+  border: 1px solid #e6e6e6;
+  float: right;
+  height: 240px;
+  margin: 0 5px;
+  overflow: hidden;
+  width: 320px;
+}
+
+.media-container {
+  display: grid;
+  grid-template-columns: 25px auto 25px;
+  align-items: center;
+  flex: 1 1;
+  overflow: hidden;
+  height: 200px;
+}
+
+.media-container--fullscreen {
+  grid-template-columns: 0px auto 0px;
+}
+
+.media-container__nav--right,
+.media-container__nav--left {
+  text-align: center;
+  cursor: pointer;
+}
+
+.media-container__viewport {
+  cursor: pointer;
+  text-align: center;
+  height: inherit;
+}
+.media-container__viewport img,
+.media-container__viewport video {
+  object-fit: cover;
+  width: 100%;
+  max-height: 100%;
+}
+
+.media__name,
+.media__counter {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex: 0 0 25px;
+  align-items: center;
+}
+
+.collapsible td:not(.col-links) {
+  cursor: pointer;
+}
+.collapsible td:not(.col-links):hover::after {
+  color: #bbb;
+  font-style: italic;
+  cursor: pointer;
+}
+
+.col-result {
+  width: 130px;
+}
+.col-result:hover::after {
+  content: " (hide details)";
+}
+
+.col-result.collapsed:hover::after {
+  content: " (show details)";
+}
+
+#environment-header h2:hover::after {
+  content: " (hide details)";
+  color: #bbb;
+  font-style: italic;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+#environment-header.collapsed h2:hover::after {
+  content: " (show details)";
+  color: #bbb;
+  font-style: italic;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+/*------------------
+ * 3. Sorting items
+ *------------------*/
+.sortable {
+  cursor: pointer;
+}
+.sortable.desc:after {
+  content: " ";
+  position: relative;
+  left: 5px;
+  bottom: -12.5px;
+  border: 10px solid #4caf50;
+  border-bottom: 0;
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+.sortable.asc:after {
+  content: " ";
+  position: relative;
+  left: 5px;
+  bottom: 12.5px;
+  border: 10px solid #4caf50;
+  border-top: 0;
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+
+.hidden, .summary__reload__button.hidden {
+  display: none;
+}
+
+.summary__data {
+  flex: 0 0 550px;
+}
+.summary__reload {
+  flex: 1 1;
+  display: flex;
+  justify-content: center;
+}
+.summary__reload__button {
+  flex: 0 0 300px;
+  display: flex;
+  color: white;
+  font-weight: bold;
+  background-color: #4caf50;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.summary__reload__button:hover {
+  background-color: #46a049;
+}
+.summary__spacer {
+  flex: 0 0 550px;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+}
+
+.filters,
+.collapse {
+  display: flex;
+  align-items: center;
+}
+.filters button,
+.collapse button {
+  color: #999;
+  border: none;
+  background: none;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.filters button:hover,
+.collapse button:hover {
+  color: #ccc;
+}
+
+.filter__label {
+  margin-right: 10px;
+}
+
+      </style>
+    
+  <link type="text/css" rel="stylesheet" charset="UTF-8" href="./evidence.relatório_files/m=el_main_css"><link type="text/css" rel="stylesheet" charset="UTF-8" href="./evidence.relatório_files/m=el_main_css(1)"></head>
+  <body>
+    <h1 id="title"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">relatório.html</font></font></font></font></h1>
+    <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Relatório gerado em 16 de maio de 2026 às 23:27:16 por </font></font></font></font><a href="https://pypi.python.org/pypi/pytest-html"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">pytest-html</font></font></font></font></a><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">  
+        v4.1.1</font></font></font></font></p>
+    <div id="environment-header">
+      <h2><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Ambiente</font></font></font></font></h2>
+    </div>
+    <table id="environment">
+      <tbody><tr>
+        <td><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Python</font></font></font></font></td>
+        <td><div><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">3.9.2</font></font></font></font></div></td>
+      </tr>
+    
+      <tr>
+        <td><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Plataforma</font></font></font></font></td>
+        <td><div><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Linux-5.10.39-x86_64-com-glibc2.31</font></font></font></font></div></td>
+      </tr>
+    
+      <tr>
+        <td><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">sêmen</font></font></font></font></td>
+        <td><ul><li><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">pytest: 8.0.0</font></font></font></font></li><li><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">pluggy: 1.6.0</font></font></font></font></li><ul></ul></ul></td>
+      </tr>
+    
+      <tr>
+        <td><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Plugins</font></font></font></font></td>
+        <td><ul><li><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">dramaturgo: 0.4.4</font></font></font></font></li><li><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">: 3.1.1</font></font></font></font></li><li><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">html: 4.1.1</font></font></font></font></li><li><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">URL base: 2.1.0</font></font></font></font></li><li><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">bdd: 7.1.2</font></font></font></font></li><li><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">allure-pytest: 2.13.5</font></font></font></font></li><ul></ul></ul></td>
+      </tr>
+    
+      <tr>
+        <td><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">URL base</font></font></font></font></td>
+        <td><div></div></td>
+      </tr>
+    </tbody></table>
+    <!-- TEMPLATES -->
+      <template id="template_environment_row"></template>
+    <template id="template_results-table__body--empty"></template>
+    <template id="template_results-table__tbody"></template>
+    <!-- END TEMPLATES -->
+    <div class="summary">
+      <div class="summary__data">
+        <h2><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Resumo</font></font></font></font></h2>
+        <div class="additional-summary prefix">
+        </div>
+        <p class="run-count"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">O teste 0 levou 13 ms.</font></font></font></font></p>
+        <p class="filter"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Marque ou desmarque as caixas para filtrar os resultados.</font></font></font></font></p>
+        <div class="summary__reload">
+          <div class="summary__reload__button hidden" onclick="location.reload()">
+            <div><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Ainda há testes em andamento. </font></font></font></font><br><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Atualize esta página para obter os resultados mais recentes!</font></font></font></font></div>
+          </div>
+        </div>
+        <div class="summary__spacer"></div>
+        <div class="controls">
+          <div class="filters">
+            <input checked="true" class="filter" name="filter_checkbox" type="checkbox" data-test-result="failed" disabled="">
+            <span class="failed"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">0 falhas</font></font></font></font></span>
+            <input checked="true" class="filter" name="filter_checkbox" type="checkbox" data-test-result="passed" disabled="">
+            <span class="passed"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">0 Aprovado,</font></font></font></font></span>
+            <input checked="true" class="filter" name="filter_checkbox" type="checkbox" data-test-result="skipped" disabled="">
+            <span class="skipped"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">0 Ignorado,</font></font></font></font></span>
+            <input checked="true" class="filter" name="filter_checkbox" type="checkbox" data-test-result="xfailed" disabled="">
+            <span class="xfailed"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">0 falhas esperadas,</font></font></font></font></span>
+            <input checked="true" class="filter" name="filter_checkbox" type="checkbox" data-test-result="xpassed" disabled="">
+            <span class="xpassed"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">0 passes inesperados,</font></font></font></font></span>
+            <input checked="true" class="filter" name="filter_checkbox" type="checkbox" data-test-result="error">
+            <span class="error"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">5 erros,</font></font></font></font></span>
+            <input checked="true" class="filter" name="filter_checkbox" type="checkbox" data-test-result="rerun" disabled="">
+            <span class="rerun"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">0 reprises</font></font></font></font></span>
+          </div>
+          <div class="collapse">
+            <button id="show_all_details"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Mostrar todos os negritos</font></font></font></font></button><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">&nbsp;/&nbsp;</font></font></font></font><button id="hide_all_details"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Ocultar todos os guerreiras</font></font></font></font></button>
+          </div>
+        </div>
+      </div>
+      <div class="additional-summary summary">
+      </div>
+      <div class="additional-summary postfix">
+      </div>
+    </div>
+    <table id="results-table"><thead id="results-table-head">
+        <tr>
+          <th class="sortable asc" data-column-type="result"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Resultado</font></font></font></font></th>
+          <th class="sortable" data-column-type="testId"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Teste</font></font></font></font></th>
+          <th class="sortable" data-column-type="duration"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Duração</font></font></font></font></th>
+          <th><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Links</font></font></font></font></th>
+        </tr>
+      </thead>
+      <tbody class="results-table-row error" id="teste-senior-clouddy/tests/test_logic_integrity.py::TestClouddyStabilitySuite::test_ct01_instalacao_e_inicializacao::setup">
+        <tr class="collapsible" data-id="test_0">
+        <td class="col-result"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Erro</font></font></font></font></td><td class="col-testId"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">teste-senior-clouddy/tests/test_logic_integrity.py::TestClouddyStabilitySuite::test_ct01_instalacao_e_inicializacao::setup</font></font></font></font></td><td class="col-duration"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">7 ms</font></font></font></font></td><td class="col-links"></td></tr>
+        <tr class="extras-row">
+          <td class="extra" colspan="4">
+            <div class="extraHTML"></div>
+            <div class="media hidden">
+              <div class="media-container">
+                  <div class="media-container__nav--left"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">&lt;</font></font></font></font></div>
+                  <div class="media-container__viewport">
+                    <img src="./evidence.relatório_files/report.html">
+                    <video controls="">
+                      <source src="" type="video/mp4">
+                    </video>
+                  </div>
+                  <div class="media-container__nav--right"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">&gt;</font></font></font></font></div>
+                </div>
+                <div class="media__name"></div>
+                <div class="media__counter"></div>
+            </div>
+            <div class="logwrapper">
+              <div class="logexpander"></div>
+              <div class="log"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">@pytest.fixture(scope="session") def device_connected(): result = run_command("adb devices") &gt; assert "device" in result.stdout, "Nenhum dispositivo Android conectado."
+  </font></font></font></font><span class="error"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">E AssertionError: Nenhum dispositivo Android conectado. </font></font></font></font></span>
+<span class="error"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">E assert 'device' in '' </font></font></font></font></span>
+<span class="error"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">E + where '' = CompletedProcess(args='adb devices', returncode=127, stdout='', stderr='/bin/sh: 1: adb: not found\n').stdout</font></font></font></font></span><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">  
+
+teste-senior-clouddy/tests/test_logic_integrity.py:23: AssertionError
+</font></font></font></font></div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    
+      <tbody class="results-table-row error" id="teste-senior-clouddy/tests/test_logic_integrity.py::TestClouddyStabilitySuite::test_ct02_seguranca_de_pasta::setup">
+        <tr class="collapsible" data-id="test_1">
+        <td class="col-result"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Erro</font></font></font></font></td><td class="col-testId"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">teste-senior-clouddy/tests/test_logic_integrity.py::TestClouddyStabilitySuite::test_ct02_seguranca_de_pasta::setup</font></font></font></font></td><td class="col-duration"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">1 ms</font></font></font></font></td><td class="col-links"></td></tr>
+        <tr class="extras-row">
+          <td class="extra" colspan="4">
+            <div class="extraHTML"></div>
+            <div class="media hidden">
+              <div class="media-container">
+                  <div class="media-container__nav--left"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">&lt;</font></font></font></font></div>
+                  <div class="media-container__viewport">
+                    <img src="./evidence.relatório_files/report.html">
+                    <video controls="">
+                      <source src="" type="video/mp4">
+                    </video>
+                  </div>
+                  <div class="media-container__nav--right"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">&gt;</font></font></font></font></div>
+                </div>
+                <div class="media__name"></div>
+                <div class="media__counter"></div>
+            </div>
+            <div class="logwrapper">
+              <div class="logexpander"></div>
+              <div class="log"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">@pytest.fixture(scope="session") def device_connected(): result = run_command("adb devices") &gt; assert "device" in result.stdout, "Nenhum dispositivo Android conectado."
+  </font></font></font></font><span class="error"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">E AssertionError: Nenhum dispositivo Android conectado. </font></font></font></font></span>
+<span class="error"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">E assert 'device' in '' </font></font></font></font></span>
+<span class="error"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">E + where '' = CompletedProcess(args='adb devices', returncode=127, stdout='', stderr='/bin/sh: 1: adb: not found\n').stdout</font></font></font></font></span><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">  
+
+teste-senior-clouddy/tests/test_logic_integrity.py:23: AssertionError
+</font></font></font></font></div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    
+      <tbody class="results-table-row error" id="teste-senior-clouddy/tests/test_logic_integrity.py::TestClouddyStabilitySuite::test_ct03_validacao_de_url::setup">
+        <tr class="collapsible" data-id="test_2">
+        <td class="col-result"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Erro</font></font></font></font></td><td class="col-testId"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">teste-senior-clouddy/tests/test_logic_integrity.py::TestClouddyStabilitySuite::test_ct03_validacao_de_url::setup</font></font></font></font></td><td class="col-duration"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">1 ms</font></font></font></font></td><td class="col-links"></td></tr>
+        <tr class="extras-row">
+          <td class="extra" colspan="4">
+            <div class="extraHTML"></div>
+            <div class="media hidden">
+              <div class="media-container">
+                  <div class="media-container__nav--left"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">&lt;</font></font></font></font></div>
+                  <div class="media-container__viewport">
+                    <img src="./evidence.relatório_files/report.html">
+                    <video controls="">
+                      <source src="" type="video/mp4">
+                    </video>
+                  </div>
+                  <div class="media-container__nav--right"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">&gt;</font></font></font></font></div>
+                </div>
+                <div class="media__name"></div>
+                <div class="media__counter"></div>
+            </div>
+            <div class="logwrapper">
+              <div class="logexpander"></div>
+              <div class="log"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">@pytest.fixture(scope="session") def device_connected(): result = run_command("adb devices") &gt; assert "device" in result.stdout, "Nenhum dispositivo Android conectado."
+  </font></font></font></font><span class="error"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">E AssertionError: Nenhum dispositivo Android conectado. </font></font></font></font></span>
+<span class="error"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">E assert 'device' in '' </font></font></font></font></span>
+<span class="error"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">E + where '' = CompletedProcess(args='adb devices', returncode=127, stdout='', stderr='/bin/sh: 1: adb: not found\n').stdout</font></font></font></font></span><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">  
+
+teste-senior-clouddy/tests/test_logic_integrity.py:23: AssertionError
+</font></font></font></font></div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    
+      <tbody class="results-table-row error" id="teste-senior-clouddy/tests/test_logic_integrity.py::TestClouddyStabilitySuite::test_ct04_reproducao_midia_alta_resolucao::setup">
+        <tr class="collapsible" data-id="test_3">
+        <td class="col-result"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Erro</font></font></font></font></td><td class="col-testId"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">teste-senior-clouddy/tests/test_logic_integrity.py::TestClouddyStabilitySuite::test_ct04_reproducao_midia_alta_resolucao::setup</font></font></font></font></td><td class="col-duration"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">1 ms</font></font></font></font></td><td class="col-links"></td></tr>
+        <tr class="extras-row">
+          <td class="extra" colspan="4">
+            <div class="extraHTML"></div>
+            <div class="media hidden">
+              <div class="media-container">
+                  <div class="media-container__nav--left"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">&lt;</font></font></font></font></div>
+                  <div class="media-container__viewport">
+                    <img src="./evidence.relatório_files/report.html">
+                    <video controls="">
+                      <source src="" type="video/mp4">
+                    </video>
+                  </div>
+                  <div class="media-container__nav--right"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">&gt;</font></font></font></font></div>
+                </div>
+                <div class="media__name"></div>
+                <div class="media__counter"></div>
+            </div>
+            <div class="logwrapper">
+              <div class="logexpander"></div>
+              <div class="log"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">@pytest.fixture(scope="session") def device_connected(): result = run_command("adb devices") &gt; assert "device" in result.stdout, "Nenhum dispositivo Android conectado."
+  </font></font></font></font><span class="error"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">E AssertionError: Nenhum dispositivo Android conectado. </font></font></font></font></span>
+<span class="error"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">E assert 'device' in '' </font></font></font></font></span>
+<span class="error"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">E + where '' = CompletedProcess(args='adb devices', returncode=127, stdout='', stderr='/bin/sh: 1: adb: not found\n').stdout</font></font></font></font></span><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">  
+
+teste-senior-clouddy/tests/test_logic_integrity.py:23: AssertionError
+</font></font></font></font></div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    
+      <tbody class="results-table-row error" id="teste-senior-clouddy/tests/test_logic_integrity.py::TestClouddyStabilitySuite::test_ct05_tratamento_offline::setup">
+        <tr class="collapsible" data-id="test_4">
+        <td class="col-result"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Erro</font></font></font></font></td><td class="col-testId"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">teste-senior-clouddy/tests/test_logic_integrity.py::TestClouddyStabilitySuite::test_ct05_tratamento_offline::setup</font></font></font></font></td><td class="col-duration"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">1 ms</font></font></font></font></td><td class="col-links"></td></tr>
+        <tr class="extras-row">
+          <td class="extra" colspan="4">
+            <div class="extraHTML"></div>
+            <div class="media hidden">
+              <div class="media-container">
+                  <div class="media-container__nav--left"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">&lt;</font></font></font></font></div>
+                  <div class="media-container__viewport">
+                    <img src="./evidence.relatório_files/report.html">
+                    <video controls="">
+                      <source src="" type="video/mp4">
+                    </video>
+                  </div>
+                  <div class="media-container__nav--right"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">&gt;</font></font></font></font></div>
+                </div>
+                <div class="media__name"></div>
+                <div class="media__counter"></div>
+            </div>
+            <div class="logwrapper">
+              <div class="logexpander"></div>
+              <div class="log"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">@pytest.fixture(scope="session") def device_connected(): result = run_command("adb devices") &gt; assert "device" in result.stdout, "Nenhum dispositivo Android conectado."
+  </font></font></font></font><span class="error"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">E AssertionError: Nenhum dispositivo Android conectado. </font></font></font></font></span>
+<span class="error"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">E assert 'device' in '' </font></font></font></font></span>
+<span class="error"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">E + where '' = CompletedProcess(args='adb devices', returncode=127, stdout='', stderr='/bin/sh: 1: adb: not found\n').stdout</font></font></font></font></span><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">  
+
+teste-senior-clouddy/tests/test_logic_integrity.py:23: AssertionError
+</font></font></font></font></div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+  <footer>
+    <div id="data-container" data-jsonblob="{&quot;environment&quot;: {&quot;Python&quot;: &quot;3.9.2&quot;, &quot;Platform&quot;: &quot;Linux-5.10.39-x86_64-with-glibc2.31&quot;, &quot;Packages&quot;: {&quot;pytest&quot;: &quot;8.0.0&quot;, &quot;pluggy&quot;: &quot;1.6.0&quot;}, &quot;Plugins&quot;: {&quot;playwright&quot;: &quot;0.4.4&quot;, &quot;metadata&quot;: &quot;3.1.1&quot;, &quot;html&quot;: &quot;4.1.1&quot;, &quot;base-url&quot;: &quot;2.1.0&quot;, &quot;bdd&quot;: &quot;7.1.2&quot;, &quot;allure-pytest&quot;: &quot;2.13.5&quot;}, &quot;Base URL&quot;: &quot;&quot;}, &quot;tests&quot;: {&quot;teste-senior-clouddy/tests/test_logic_integrity.py::TestClouddyStabilitySuite::test_ct01_instalacao_e_inicializacao&quot;: [{&quot;extras&quot;: [], &quot;result&quot;: &quot;Error&quot;, &quot;testId&quot;: &quot;teste-senior-clouddy/tests/test_logic_integrity.py::TestClouddyStabilitySuite::test_ct01_instalacao_e_inicializacao::setup&quot;, &quot;duration&quot;: &quot;7 ms&quot;, &quot;resultsTableRow&quot;: [&quot;&lt;td class=\&quot;col-result\&quot;&gt;Error&lt;/td&gt;&quot;, &quot;&lt;td class=\&quot;col-testId\&quot;&gt;teste-senior-clouddy/tests/test_logic_integrity.py::TestClouddyStabilitySuite::test_ct01_instalacao_e_inicializacao::setup&lt;/td&gt;&quot;, &quot;&lt;td class=\&quot;col-duration\&quot;&gt;7 ms&lt;/td&gt;&quot;, &quot;&lt;td class=\&quot;col-links\&quot;&gt;&lt;/td&gt;&quot;], &quot;log&quot;: &quot;@pytest.fixture(scope=&amp;quot;session&amp;quot;)\n    def device_connected():\n        result = run_command(&amp;quot;adb devices&amp;quot;)\n&amp;gt;       assert &amp;quot;device&amp;quot; in result.stdout, &amp;quot;Nenhum dispositivo Android conectado.&amp;quot;\nE       AssertionError: Nenhum dispositivo Android conectado.\nE       assert &amp;#x27;device&amp;#x27; in &amp;#x27;&amp;#x27;\nE        +  where &amp;#x27;&amp;#x27; = CompletedProcess(args=&amp;#x27;adb devices&amp;#x27;, returncode=127, stdout=&amp;#x27;&amp;#x27;, stderr=&amp;#x27;/bin/sh: 1: adb: not found\\n&amp;#x27;).stdout\n\nteste-senior-clouddy/tests/test_logic_integrity.py:23: AssertionError\n&quot;}], &quot;teste-senior-clouddy/tests/test_logic_integrity.py::TestClouddyStabilitySuite::test_ct02_seguranca_de_pasta&quot;: [{&quot;extras&quot;: [], &quot;result&quot;: &quot;Error&quot;, &quot;testId&quot;: &quot;teste-senior-clouddy/tests/test_logic_integrity.py::TestClouddyStabilitySuite::test_ct02_seguranca_de_pasta::setup&quot;, &quot;duration&quot;: &quot;1 ms&quot;, &quot;resultsTableRow&quot;: [&quot;&lt;td class=\&quot;col-result\&quot;&gt;Error&lt;/td&gt;&quot;, &quot;&lt;td class=\&quot;col-testId\&quot;&gt;teste-senior-clouddy/tests/test_logic_integrity.py::TestClouddyStabilitySuite::test_ct02_seguranca_de_pasta::setup&lt;/td&gt;&quot;, &quot;&lt;td class=\&quot;col-duration\&quot;&gt;1 ms&lt;/td&gt;&quot;, &quot;&lt;td class=\&quot;col-links\&quot;&gt;&lt;/td&gt;&quot;], &quot;log&quot;: &quot;@pytest.fixture(scope=&amp;quot;session&amp;quot;)\n    def device_connected():\n        result = run_command(&amp;quot;adb devices&amp;quot;)\n&amp;gt;       assert &amp;quot;device&amp;quot; in result.stdout, &amp;quot;Nenhum dispositivo Android conectado.&amp;quot;\nE       AssertionError: Nenhum dispositivo Android conectado.\nE       assert &amp;#x27;device&amp;#x27; in &amp;#x27;&amp;#x27;\nE        +  where &amp;#x27;&amp;#x27; = CompletedProcess(args=&amp;#x27;adb devices&amp;#x27;, returncode=127, stdout=&amp;#x27;&amp;#x27;, stderr=&amp;#x27;/bin/sh: 1: adb: not found\\n&amp;#x27;).stdout\n\nteste-senior-clouddy/tests/test_logic_integrity.py:23: AssertionError\n&quot;}], &quot;teste-senior-clouddy/tests/test_logic_integrity.py::TestClouddyStabilitySuite::test_ct03_validacao_de_url&quot;: [{&quot;extras&quot;: [], &quot;result&quot;: &quot;Error&quot;, &quot;testId&quot;: &quot;teste-senior-clouddy/tests/test_logic_integrity.py::TestClouddyStabilitySuite::test_ct03_validacao_de_url::setup&quot;, &quot;duration&quot;: &quot;1 ms&quot;, &quot;resultsTableRow&quot;: [&quot;&lt;td class=\&quot;col-result\&quot;&gt;Error&lt;/td&gt;&quot;, &quot;&lt;td class=\&quot;col-testId\&quot;&gt;teste-senior-clouddy/tests/test_logic_integrity.py::TestClouddyStabilitySuite::test_ct03_validacao_de_url::setup&lt;/td&gt;&quot;, &quot;&lt;td class=\&quot;col-duration\&quot;&gt;1 ms&lt;/td&gt;&quot;, &quot;&lt;td class=\&quot;col-links\&quot;&gt;&lt;/td&gt;&quot;], &quot;log&quot;: &quot;@pytest.fixture(scope=&amp;quot;session&amp;quot;)\n    def device_connected():\n        result = run_command(&amp;quot;adb devices&amp;quot;)\n&amp;gt;       assert &amp;quot;device&amp;quot; in result.stdout, &amp;quot;Nenhum dispositivo Android conectado.&amp;quot;\nE       AssertionError: Nenhum dispositivo Android conectado.\nE       assert &amp;#x27;device&amp;#x27; in &amp;#x27;&amp;#x27;\nE        +  where &amp;#x27;&amp;#x27; = CompletedProcess(args=&amp;#x27;adb devices&amp;#x27;, returncode=127, stdout=&amp;#x27;&amp;#x27;, stderr=&amp;#x27;/bin/sh: 1: adb: not found\\n&amp;#x27;).stdout\n\nteste-senior-clouddy/tests/test_logic_integrity.py:23: AssertionError\n&quot;}], &quot;teste-senior-clouddy/tests/test_logic_integrity.py::TestClouddyStabilitySuite::test_ct04_reproducao_midia_alta_resolucao&quot;: [{&quot;extras&quot;: [], &quot;result&quot;: &quot;Error&quot;, &quot;testId&quot;: &quot;teste-senior-clouddy/tests/test_logic_integrity.py::TestClouddyStabilitySuite::test_ct04_reproducao_midia_alta_resolucao::setup&quot;, &quot;duration&quot;: &quot;1 ms&quot;, &quot;resultsTableRow&quot;: [&quot;&lt;td class=\&quot;col-result\&quot;&gt;Error&lt;/td&gt;&quot;, &quot;&lt;td class=\&quot;col-testId\&quot;&gt;teste-senior-clouddy/tests/test_logic_integrity.py::TestClouddyStabilitySuite::test_ct04_reproducao_midia_alta_resolucao::setup&lt;/td&gt;&quot;, &quot;&lt;td class=\&quot;col-duration\&quot;&gt;1 ms&lt;/td&gt;&quot;, &quot;&lt;td class=\&quot;col-links\&quot;&gt;&lt;/td&gt;&quot;], &quot;log&quot;: &quot;@pytest.fixture(scope=&amp;quot;session&amp;quot;)\n    def device_connected():\n        result = run_command(&amp;quot;adb devices&amp;quot;)\n&amp;gt;       assert &amp;quot;device&amp;quot; in result.stdout, &amp;quot;Nenhum dispositivo Android conectado.&amp;quot;\nE       AssertionError: Nenhum dispositivo Android conectado.\nE       assert &amp;#x27;device&amp;#x27; in &amp;#x27;&amp;#x27;\nE        +  where &amp;#x27;&amp;#x27; = CompletedProcess(args=&amp;#x27;adb devices&amp;#x27;, returncode=127, stdout=&amp;#x27;&amp;#x27;, stderr=&amp;#x27;/bin/sh: 1: adb: not found\\n&amp;#x27;).stdout\n\nteste-senior-clouddy/tests/test_logic_integrity.py:23: AssertionError\n&quot;}], &quot;teste-senior-clouddy/tests/test_logic_integrity.py::TestClouddyStabilitySuite::test_ct05_tratamento_offline&quot;: [{&quot;extras&quot;: [], &quot;result&quot;: &quot;Error&quot;, &quot;testId&quot;: &quot;teste-senior-clouddy/tests/test_logic_integrity.py::TestClouddyStabilitySuite::test_ct05_tratamento_offline::setup&quot;, &quot;duration&quot;: &quot;1 ms&quot;, &quot;resultsTableRow&quot;: [&quot;&lt;td class=\&quot;col-result\&quot;&gt;Error&lt;/td&gt;&quot;, &quot;&lt;td class=\&quot;col-testId\&quot;&gt;teste-senior-clouddy/tests/test_logic_integrity.py::TestClouddyStabilitySuite::test_ct05_tratamento_offline::setup&lt;/td&gt;&quot;, &quot;&lt;td class=\&quot;col-duration\&quot;&gt;1 ms&lt;/td&gt;&quot;, &quot;&lt;td class=\&quot;col-links\&quot;&gt;&lt;/td&gt;&quot;], &quot;log&quot;: &quot;@pytest.fixture(scope=&amp;quot;session&amp;quot;)\n    def device_connected():\n        result = run_command(&amp;quot;adb devices&amp;quot;)\n&amp;gt;       assert &amp;quot;device&amp;quot; in result.stdout, &amp;quot;Nenhum dispositivo Android conectado.&amp;quot;\nE       AssertionError: Nenhum dispositivo Android conectado.\nE       assert &amp;#x27;device&amp;#x27; in &amp;#x27;&amp;#x27;\nE        +  where &amp;#x27;&amp;#x27; = CompletedProcess(args=&amp;#x27;adb devices&amp;#x27;, returncode=127, stdout=&amp;#x27;&amp;#x27;, stderr=&amp;#x27;/bin/sh: 1: adb: not found\\n&amp;#x27;).stdout\n\nteste-senior-clouddy/tests/test_logic_integrity.py:23: AssertionError\n&quot;}]}, &quot;renderCollapsed&quot;: [&quot;passed&quot;], &quot;initialSort&quot;: &quot;result&quot;, &quot;title&quot;: &quot;report.html&quot;}"></div>
+    <script>
+      (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
+const { getCollapsedCategory, setCollapsedIds } = require('./storage.js')
+
+class DataManager {
+    setManager(data) {
+        const collapsedCategories = [...getCollapsedCategory(data.renderCollapsed)]
+        const collapsedIds = []
+        const tests = Object.values(data.tests).flat().map((test, index) => {
+            const collapsed = collapsedCategories.includes(test.result.toLowerCase())
+            const id = `test_${index}`
+            if (collapsed) {
+                collapsedIds.push(id)
+            }
+            return {
+                ...test,
+                id,
+                collapsed,
+            }
+        })
+        const dataBlob = { ...data, tests }
+        this.data = { ...dataBlob }
+        this.renderData = { ...dataBlob }
+        setCollapsedIds(collapsedIds)
+    }
+
+    get allData() {
+        return { ...this.data }
+    }
+
+    resetRender() {
+        this.renderData = { ...this.data }
+    }
+
+    setRender(data) {
+        this.renderData.tests = [...data]
+    }
+
+    toggleCollapsedItem(id) {
+        this.renderData.tests = this.renderData.tests.map((test) =>
+            test.id === id ? { ...test, collapsed: !test.collapsed } : test,
+        )
+    }
+
+    set allCollapsed(collapsed) {
+        this.renderData = { ...this.renderData, tests: [...this.renderData.tests.map((test) => (
+            { ...test, collapsed }
+        ))] }
+    }
+
+    get testSubset() {
+        return [...this.renderData.tests]
+    }
+
+    get environment() {
+        return this.renderData.environment
+    }
+
+    get initialSort() {
+        return this.data.initialSort
+    }
+}
+
+module.exports = {
+    manager: new DataManager(),
+}
+
+},{"./storage.js":8}],2:[function(require,module,exports){
+const mediaViewer = require('./mediaviewer.js')
+const templateEnvRow = document.getElementById('template_environment_row')
+const templateResult = document.getElementById('template_results-table__tbody')
+
+function htmlToElements(html) {
+    const temp = document.createElement('template')
+    temp.innerHTML = html
+    return temp.content.childNodes
+}
+
+const find = (selector, elem) => {
+    if (!elem) {
+        elem = document
+    }
+    return elem.querySelector(selector)
+}
+
+const findAll = (selector, elem) => {
+    if (!elem) {
+        elem = document
+    }
+    return [...elem.querySelectorAll(selector)]
+}
+
+const dom = {
+    getStaticRow: (key, value) => {
+        const envRow = templateEnvRow.content.cloneNode(true)
+        const isObj = typeof value === 'object' && value !== null
+        const values = isObj ? Object.keys(value).map((k) => `${k}: ${value[k]}`) : null
+
+        const valuesElement = htmlToElements(
+            values ? `<ul>${values.map((val) => `<li>${val}</li>`).join('')}<ul>` : `<div>${value}</div>`)[0]
+        const td = findAll('td', envRow)
+        td[0].textContent = key
+        td[1].appendChild(valuesElement)
+
+        return envRow
+    },
+    getResultTBody: ({ testId, id, log, extras, resultsTableRow, tableHtml, result, collapsed }) => {
+        const resultBody = templateResult.content.cloneNode(true)
+        resultBody.querySelector('tbody').classList.add(result.toLowerCase())
+        resultBody.querySelector('tbody').id = testId
+        resultBody.querySelector('.collapsible').dataset.id = id
+
+        resultsTableRow.forEach((html) => {
+            const t = document.createElement('template')
+            t.innerHTML = html
+            resultBody.querySelector('.collapsible').appendChild(t.content)
+        })
+
+        if (log) {
+            // Wrap lines starting with "E" with span.error to color those lines red
+            const wrappedLog = log.replace(/^E.*$/gm, (match) => `<span class="error">${match}</span>`)
+            resultBody.querySelector('.log').innerHTML = wrappedLog
+        } else {
+            resultBody.querySelector('.log').remove()
+        }
+
+        if (collapsed) {
+            resultBody.querySelector('.collapsible > td')?.classList.add('collapsed')
+            resultBody.querySelector('.extras-row').classList.add('hidden')
+        } else {
+            resultBody.querySelector('.collapsible > td')?.classList.remove('collapsed')
+        }
+
+        const media = []
+        extras?.forEach(({ name, format_type, content }) => {
+            if (['image', 'video'].includes(format_type)) {
+                media.push({ path: content, name, format_type })
+            }
+
+            if (format_type === 'html') {
+                resultBody.querySelector('.extraHTML').insertAdjacentHTML('beforeend', `<div>${content}</div>`)
+            }
+        })
+        mediaViewer.setup(resultBody, media)
+
+        // Add custom html from the pytest_html_results_table_html hook
+        tableHtml?.forEach((item) => {
+            resultBody.querySelector('td[class="extra"]').insertAdjacentHTML('beforeend', item)
+        })
+
+        return resultBody
+    },
+}
+
+module.exports = {
+    dom,
+    htmlToElements,
+    find,
+    findAll,
+}
+
+},{"./mediaviewer.js":6}],3:[function(require,module,exports){
+const { manager } = require('./datamanager.js')
+const { doSort } = require('./sort.js')
+const storageModule = require('./storage.js')
+
+const getFilteredSubSet = (filter) =>
+    manager.allData.tests.filter(({ result }) => filter.includes(result.toLowerCase()))
+
+const doInitFilter = () => {
+    const currentFilter = storageModule.getVisible()
+    const filteredSubset = getFilteredSubSet(currentFilter)
+    manager.setRender(filteredSubset)
+}
+
+const doFilter = (type, show) => {
+    if (show) {
+        storageModule.showCategory(type)
+    } else {
+        storageModule.hideCategory(type)
+    }
+
+    const currentFilter = storageModule.getVisible()
+    const filteredSubset = getFilteredSubSet(currentFilter)
+    manager.setRender(filteredSubset)
+
+    const sortColumn = storageModule.getSort()
+    doSort(sortColumn, true)
+}
+
+module.exports = {
+    doFilter,
+    doInitFilter,
+}
+
+},{"./datamanager.js":1,"./sort.js":7,"./storage.js":8}],4:[function(require,module,exports){
+const { redraw, bindEvents, renderStatic } = require('./main.js')
+const { doInitFilter } = require('./filter.js')
+const { doInitSort } = require('./sort.js')
+const { manager } = require('./datamanager.js')
+const data = JSON.parse(document.getElementById('data-container').dataset.jsonblob)
+
+function init() {
+    manager.setManager(data)
+    doInitFilter()
+    doInitSort()
+    renderStatic()
+    redraw()
+    bindEvents()
+}
+
+init()
+
+},{"./datamanager.js":1,"./filter.js":3,"./main.js":5,"./sort.js":7}],5:[function(require,module,exports){
+const { dom, find, findAll } = require('./dom.js')
+const { manager } = require('./datamanager.js')
+const { doSort } = require('./sort.js')
+const { doFilter } = require('./filter.js')
+const {
+    getVisible,
+    getCollapsedIds,
+    setCollapsedIds,
+    getSort,
+    getSortDirection,
+    possibleFilters,
+} = require('./storage.js')
+
+const removeChildren = (node) => {
+    while (node.firstChild) {
+        node.removeChild(node.firstChild)
+    }
+}
+
+const renderStatic = () => {
+    const renderEnvironmentTable = () => {
+        const environment = manager.environment
+        const rows = Object.keys(environment).map((key) => dom.getStaticRow(key, environment[key]))
+        const table = document.getElementById('environment')
+        removeChildren(table)
+        rows.forEach((row) => table.appendChild(row))
+    }
+    renderEnvironmentTable()
+}
+
+const addItemToggleListener = (elem) => {
+    elem.addEventListener('click', ({ target }) => {
+        const id = target.parentElement.dataset.id
+        manager.toggleCollapsedItem(id)
+
+        const collapsedIds = getCollapsedIds()
+        if (collapsedIds.includes(id)) {
+            const updated = collapsedIds.filter((item) => item !== id)
+            setCollapsedIds(updated)
+        } else {
+            collapsedIds.push(id)
+            setCollapsedIds(collapsedIds)
+        }
+        redraw()
+    })
+}
+
+const renderContent = (tests) => {
+    const sortAttr = getSort(manager.initialSort)
+    const sortAsc = JSON.parse(getSortDirection())
+    const rows = tests.map(dom.getResultTBody)
+    const table = document.getElementById('results-table')
+    const tableHeader = document.getElementById('results-table-head')
+
+    const newTable = document.createElement('table')
+    newTable.id = 'results-table'
+
+    // remove all sorting classes and set the relevant
+    findAll('.sortable', tableHeader).forEach((elem) => elem.classList.remove('asc', 'desc'))
+    tableHeader.querySelector(`.sortable[data-column-type="${sortAttr}"]`)?.classList.add(sortAsc ? 'desc' : 'asc')
+    newTable.appendChild(tableHeader)
+
+    if (!rows.length) {
+        const emptyTable = document.getElementById('template_results-table__body--empty').content.cloneNode(true)
+        newTable.appendChild(emptyTable)
+    } else {
+        rows.forEach((row) => {
+            if (!!row) {
+                findAll('.collapsible td:not(.col-links', row).forEach(addItemToggleListener)
+                find('.logexpander', row).addEventListener('click',
+                    (evt) => evt.target.parentNode.classList.toggle('expanded'),
+                )
+                newTable.appendChild(row)
+            }
+        })
+    }
+
+    table.replaceWith(newTable)
+}
+
+const renderDerived = () => {
+    const currentFilter = getVisible()
+    possibleFilters.forEach((result) => {
+        const input = document.querySelector(`input[data-test-result="${result}"]`)
+        input.checked = currentFilter.includes(result)
+    })
+}
+
+const bindEvents = () => {
+    const filterColumn = (evt) => {
+        const { target: element } = evt
+        const { testResult } = element.dataset
+
+        doFilter(testResult, element.checked)
+        const collapsedIds = getCollapsedIds()
+        const updated = manager.renderData.tests.map((test) => {
+            return {
+                ...test,
+                collapsed: collapsedIds.includes(test.id),
+            }
+        })
+        manager.setRender(updated)
+        redraw()
+    }
+
+    const header = document.getElementById('environment-header')
+    header.addEventListener('click', () => {
+        const table = document.getElementById('environment')
+        table.classList.toggle('hidden')
+        header.classList.toggle('collapsed')
+    })
+
+    findAll('input[name="filter_checkbox"]').forEach((elem) => {
+        elem.addEventListener('click', filterColumn)
+    })
+
+    findAll('.sortable').forEach((elem) => {
+        elem.addEventListener('click', (evt) => {
+            const { target: element } = evt
+            const { columnType } = element.dataset
+            doSort(columnType)
+            redraw()
+        })
+    })
+
+    document.getElementById('show_all_details').addEventListener('click', () => {
+        manager.allCollapsed = false
+        setCollapsedIds([])
+        redraw()
+    })
+    document.getElementById('hide_all_details').addEventListener('click', () => {
+        manager.allCollapsed = true
+        const allIds = manager.renderData.tests.map((test) => test.id)
+        setCollapsedIds(allIds)
+        redraw()
+    })
+}
+
+const redraw = () => {
+    const { testSubset } = manager
+
+    renderContent(testSubset)
+    renderDerived()
+}
+
+module.exports = {
+    redraw,
+    bindEvents,
+    renderStatic,
+}
+
+},{"./datamanager.js":1,"./dom.js":2,"./filter.js":3,"./sort.js":7,"./storage.js":8}],6:[function(require,module,exports){
+class MediaViewer {
+    constructor(assets) {
+        this.assets = assets
+        this.index = 0
+    }
+
+    nextActive() {
+        this.index = this.index === this.assets.length - 1 ? 0 : this.index + 1
+        return [this.activeFile, this.index]
+    }
+
+    prevActive() {
+        this.index = this.index === 0 ? this.assets.length - 1 : this.index -1
+        return [this.activeFile, this.index]
+    }
+
+    get currentIndex() {
+        return this.index
+    }
+
+    get activeFile() {
+        return this.assets[this.index]
+    }
+}
+
+
+const setup = (resultBody, assets) => {
+    if (!assets.length) {
+        resultBody.querySelector('.media').classList.add('hidden')
+        return
+    }
+
+    const mediaViewer = new MediaViewer(assets)
+    const container = resultBody.querySelector('.media-container')
+    const leftArrow = resultBody.querySelector('.media-container__nav--left')
+    const rightArrow = resultBody.querySelector('.media-container__nav--right')
+    const mediaName = resultBody.querySelector('.media__name')
+    const counter = resultBody.querySelector('.media__counter')
+    const imageEl = resultBody.querySelector('img')
+    const sourceEl = resultBody.querySelector('source')
+    const videoEl = resultBody.querySelector('video')
+
+    const setImg = (media, index) => {
+        if (media?.format_type === 'image') {
+            imageEl.src = media.path
+
+            imageEl.classList.remove('hidden')
+            videoEl.classList.add('hidden')
+        } else if (media?.format_type === 'video') {
+            sourceEl.src = media.path
+
+            videoEl.classList.remove('hidden')
+            imageEl.classList.add('hidden')
+        }
+
+        mediaName.innerText = media?.name
+        counter.innerText = `${index + 1} / ${assets.length}`
+    }
+    setImg(mediaViewer.activeFile, mediaViewer.currentIndex)
+
+    const moveLeft = () => {
+        const [media, index] = mediaViewer.prevActive()
+        setImg(media, index)
+    }
+    const doRight = () => {
+        const [media, index] = mediaViewer.nextActive()
+        setImg(media, index)
+    }
+    const openImg = () => {
+        window.open(mediaViewer.activeFile.path, '_blank')
+    }
+    if (assets.length === 1) {
+        container.classList.add('media-container--fullscreen')
+    } else {
+        leftArrow.addEventListener('click', moveLeft)
+        rightArrow.addEventListener('click', doRight)
+    }
+    imageEl.addEventListener('click', openImg)
+}
+
+module.exports = {
+    setup,
+}
+
+},{}],7:[function(require,module,exports){
+const { manager } = require('./datamanager.js')
+const storageModule = require('./storage.js')
+
+const genericSort = (list, key, ascending, customOrder) => {
+    let sorted
+    if (customOrder) {
+        sorted = list.sort((a, b) => {
+            const aValue = a.result.toLowerCase()
+            const bValue = b.result.toLowerCase()
+
+            const aIndex = customOrder.findIndex((item) => item.toLowerCase() === aValue)
+            const bIndex = customOrder.findIndex((item) => item.toLowerCase() === bValue)
+
+            // Compare the indices to determine the sort order
+            return aIndex - bIndex
+        })
+    } else {
+        sorted = list.sort((a, b) => a[key] === b[key] ? 0 : a[key] > b[key] ? 1 : -1)
+    }
+
+    if (ascending) {
+        sorted.reverse()
+    }
+    return sorted
+}
+
+const durationSort = (list, ascending) => {
+    const parseDuration = (duration) => {
+        if (duration.includes(':')) {
+            // If it's in the format "HH:mm:ss"
+            const [hours, minutes, seconds] = duration.split(':').map(Number)
+            return (hours * 3600 + minutes * 60 + seconds) * 1000
+        } else {
+            // If it's in the format "nnn ms"
+            return parseInt(duration)
+        }
+    }
+    const sorted = list.sort((a, b) => parseDuration(a['duration']) - parseDuration(b['duration']))
+    if (ascending) {
+        sorted.reverse()
+    }
+    return sorted
+}
+
+const doInitSort = () => {
+    const type = storageModule.getSort(manager.initialSort)
+    const ascending = storageModule.getSortDirection()
+    const list = manager.testSubset
+    const initialOrder = ['Error', 'Failed', 'Rerun', 'XFailed', 'XPassed', 'Skipped', 'Passed']
+
+    storageModule.setSort(type)
+    storageModule.setSortDirection(ascending)
+
+    if (type?.toLowerCase() === 'original') {
+        manager.setRender(list)
+    } else {
+        let sortedList
+        switch (type) {
+        case 'duration':
+            sortedList = durationSort(list, ascending)
+            break
+        case 'result':
+            sortedList = genericSort(list, type, ascending, initialOrder)
+            break
+        default:
+            sortedList = genericSort(list, type, ascending)
+            break
+        }
+        manager.setRender(sortedList)
+    }
+}
+
+const doSort = (type, skipDirection) => {
+    const newSortType = storageModule.getSort(manager.initialSort) !== type
+    const currentAsc = storageModule.getSortDirection()
+    let ascending
+    if (skipDirection) {
+        ascending = currentAsc
+    } else {
+        ascending = newSortType ? false : !currentAsc
+    }
+    storageModule.setSort(type)
+    storageModule.setSortDirection(ascending)
+
+    const list = manager.testSubset
+    const sortedList = type === 'duration' ? durationSort(list, ascending) : genericSort(list, type, ascending)
+    manager.setRender(sortedList)
+}
+
+module.exports = {
+    doInitSort,
+    doSort,
+}
+
+},{"./datamanager.js":1,"./storage.js":8}],8:[function(require,module,exports){
+const possibleFilters = [
+    'passed',
+    'skipped',
+    'failed',
+    'error',
+    'xfailed',
+    'xpassed',
+    'rerun',
+]
+
+const getVisible = () => {
+    const url = new URL(window.location.href)
+    const settings = new URLSearchParams(url.search).get('visible')
+    const lower = (item) => {
+        const lowerItem = item.toLowerCase()
+        if (possibleFilters.includes(lowerItem)) {
+            return lowerItem
+        }
+        return null
+    }
+    return settings === null ?
+        possibleFilters :
+        [...new Set(settings?.split(',').map(lower).filter((item) => item))]
+}
+
+const hideCategory = (categoryToHide) => {
+    const url = new URL(window.location.href)
+    const visibleParams = new URLSearchParams(url.search).get('visible')
+    const currentVisible = visibleParams ? visibleParams.split(',') : [...possibleFilters]
+    const settings = [...new Set(currentVisible)].filter((f) => f !== categoryToHide).join(',')
+
+    url.searchParams.set('visible', settings)
+    window.history.pushState({}, null, unescape(url.href))
+}
+
+const showCategory = (categoryToShow) => {
+    if (typeof window === 'undefined') {
+        return
+    }
+    const url = new URL(window.location.href)
+    const currentVisible = new URLSearchParams(url.search).get('visible')?.split(',').filter(Boolean) ||
+        [...possibleFilters]
+    const settings = [...new Set([categoryToShow, ...currentVisible])]
+    const noFilter = possibleFilters.length === settings.length || !settings.length
+
+    noFilter ? url.searchParams.delete('visible') : url.searchParams.set('visible', settings.join(','))
+    window.history.pushState({}, null, unescape(url.href))
+}
+
+const getSort = (initialSort) => {
+    const url = new URL(window.location.href)
+    let sort = new URLSearchParams(url.search).get('sort')
+    if (!sort) {
+        sort = initialSort || 'result'
+    }
+    return sort
+}
+
+const setSort = (type) => {
+    const url = new URL(window.location.href)
+    url.searchParams.set('sort', type)
+    window.history.pushState({}, null, unescape(url.href))
+}
+
+const getCollapsedCategory = (renderCollapsed) => {
+    let categories
+    if (typeof window !== 'undefined') {
+        const url = new URL(window.location.href)
+        const collapsedItems = new URLSearchParams(url.search).get('collapsed')
+        switch (true) {
+        case !renderCollapsed && collapsedItems === null:
+            categories = ['passed']
+            break
+        case collapsedItems?.length === 0 || /^["']{2}$/.test(collapsedItems):
+            categories = []
+            break
+        case /^all$/.test(collapsedItems) || collapsedItems === null && /^all$/.test(renderCollapsed):
+            categories = [...possibleFilters]
+            break
+        default:
+            categories = collapsedItems?.split(',').map((item) => item.toLowerCase()) || renderCollapsed
+            break
+        }
+    } else {
+        categories = []
+    }
+    return categories
+}
+
+const getSortDirection = () => JSON.parse(sessionStorage.getItem('sortAsc')) || false
+const setSortDirection = (ascending) => sessionStorage.setItem('sortAsc', ascending)
+
+const getCollapsedIds = () => JSON.parse(sessionStorage.getItem('collapsedIds')) || []
+const setCollapsedIds = (list) => sessionStorage.setItem('collapsedIds', JSON.stringify(list))
+
+module.exports = {
+    getVisible,
+    hideCategory,
+    showCategory,
+    getCollapsedIds,
+    setCollapsedIds,
+    getSort,
+    setSort,
+    getSortDirection,
+    setSortDirection,
+    getCollapsedCategory,
+    possibleFilters,
+}
+
+},{}]},{},[4]);
+    </script>
+  </footer><div id="goog-gt-tt" class="VIpgJd-yAWNEb-L7lbkb skiptranslate" style="border-radius: 12px; margin: 0 0 0 -23px; padding: 0; font-family: &#39;Google Sans&#39;, Arial, sans-serif;" data-id=""><div id="goog-gt-vt" class="VIpgJd-yAWNEb-hvhgNd"><div class="VIpgJd-yAWNEb-hvhgNd-Ud7fr"><img src="./evidence.relatório_files/24px.svg" width="24" height="24" alt=""><div class=" VIpgJd-yAWNEb-hvhgNd-IuizWc-i3jM8c " dir="ltr">Texto original</div></div><div class="VIpgJd-yAWNEb-hvhgNd-k77Iif"><div id="goog-gt-original-text" class="VIpgJd-yAWNEb-nVMfcd-fmcmS VIpgJd-yAWNEb-hvhgNd-axAV1"></div></div><div class="VIpgJd-yAWNEb-hvhgNd-N7Eqid ltr"><div class="VIpgJd-yAWNEb-hvhgNd-N7Eqid-B7I4Od ltr" dir="ltr"><div class="VIpgJd-yAWNEb-hvhgNd-UTujCb">Avalie a tradução</div><div class="VIpgJd-yAWNEb-hvhgNd-eO9mKe">O feedback vai ser usado para ajudar a melhorar o Google Tradutor</div></div><div class="VIpgJd-yAWNEb-hvhgNd-xgov5 ltr"><button id="goog-gt-thumbUpButton" type="button" class="VIpgJd-yAWNEb-hvhgNd-bgm6sf" title="Tradução boa" aria-label="Tradução boa" aria-pressed="false"><span id="goog-gt-thumbUpIcon"><svg width="24" height="24" viewBox="0 0 24 24" focusable="false" class="VIpgJd-yAWNEb-hvhgNd-THI6Vb NMm5M"><path d="M21 7h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 0S7.08 6.85 7 7H2v13h16c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73V9c0-1.1-.9-2-2-2zM7 18H4V9h3v9zm14-7l-3 7H9V8l4.34-4.34L12 9h9v2z"></path></svg></span><span id="goog-gt-thumbUpIconFilled"><svg width="24" height="24" viewBox="0 0 24 24" focusable="false" class="VIpgJd-yAWNEb-hvhgNd-THI6Vb NMm5M"><path d="M21 7h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 0S7.08 6.85 7 7v13h11c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73V9c0-1.1-.9-2-2-2zM5 7H1v13h4V7z"></path></svg></span></button><button id="goog-gt-thumbDownButton" type="button" class="VIpgJd-yAWNEb-hvhgNd-bgm6sf" title="Tradução ruim" aria-label="Tradução ruim" aria-pressed="false"><span id="goog-gt-thumbDownIcon"><svg width="24" height="24" viewBox="0 0 24 24" focusable="false" class="VIpgJd-yAWNEb-hvhgNd-THI6Vb NMm5M"><path d="M3 17h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 24s7.09-6.85 7.17-7h5V4H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2zM17 6h3v9h-3V6zM3 13l3-7h9v10l-4.34 4.34L12 15H3v-2z"></path></svg></span><span id="goog-gt-thumbDownIconFilled"><svg width="24" height="24" viewBox="0 0 24 24" focusable="false" class="VIpgJd-yAWNEb-hvhgNd-THI6Vb NMm5M"><path d="M3 17h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 24s7.09-6.85 7.17-7V4H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2zm16 0h4V4h-4v13z"></path></svg></span></button></div></div><div id="goog-gt-votingHiddenPane" class="VIpgJd-yAWNEb-hvhgNd-aXYTce"><form id="goog-gt-votingForm" action="file://translate.googleapis.com/translate_voting?client=te_lib" method="post" target="votingFrame" class="VIpgJd-yAWNEb-hvhgNd-aXYTce"><input type="text" name="sl" id="goog-gt-votingInputSrcLang"><input type="text" name="tl" id="goog-gt-votingInputTrgLang"><input type="text" name="query" id="goog-gt-votingInputSrcText"><input type="text" name="gtrans" id="goog-gt-votingInputTrgText"><input type="text" name="vote" id="goog-gt-votingInputVote"></form><iframe name="votingFrame" frameborder="0" src="./evidence.relatório_files/saved_resource.html"></iframe></div></div></div><div id="goog-gt-tt" class="VIpgJd-yAWNEb-L7lbkb skiptranslate" style="border-radius: 12px; margin: 0 0 0 -23px; padding: 0; font-family: &#39;Google Sans&#39;, Arial, sans-serif;" data-id=""><div id="goog-gt-vt" class="VIpgJd-yAWNEb-hvhgNd"><div class="VIpgJd-yAWNEb-hvhgNd-Ud7fr"><img src="./evidence.relatório_files/24px(1).svg" width="24" height="24" alt=""><div class=" VIpgJd-yAWNEb-hvhgNd-IuizWc-i3jM8c " dir="ltr">Texto original</div></div><div class="VIpgJd-yAWNEb-hvhgNd-k77Iif"><div id="goog-gt-original-text" class="VIpgJd-yAWNEb-nVMfcd-fmcmS VIpgJd-yAWNEb-hvhgNd-axAV1"></div></div><div class="VIpgJd-yAWNEb-hvhgNd-N7Eqid ltr"><div class="VIpgJd-yAWNEb-hvhgNd-N7Eqid-B7I4Od ltr" dir="ltr"><div class="VIpgJd-yAWNEb-hvhgNd-UTujCb">Avalie a tradução</div><div class="VIpgJd-yAWNEb-hvhgNd-eO9mKe">O feedback vai ser usado para ajudar a melhorar o Google Tradutor</div></div><div class="VIpgJd-yAWNEb-hvhgNd-xgov5 ltr"><button id="goog-gt-thumbUpButton" type="button" class="VIpgJd-yAWNEb-hvhgNd-bgm6sf" title="Tradução boa" aria-label="Tradução boa" aria-pressed="false"><span id="goog-gt-thumbUpIcon"><svg width="24" height="24" viewBox="0 0 24 24" focusable="false" class="VIpgJd-yAWNEb-hvhgNd-THI6Vb NMm5M"><path d="M21 7h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 0S7.08 6.85 7 7H2v13h16c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73V9c0-1.1-.9-2-2-2zM7 18H4V9h3v9zm14-7l-3 7H9V8l4.34-4.34L12 9h9v2z"></path></svg></span><span id="goog-gt-thumbUpIconFilled"><svg width="24" height="24" viewBox="0 0 24 24" focusable="false" class="VIpgJd-yAWNEb-hvhgNd-THI6Vb NMm5M"><path d="M21 7h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 0S7.08 6.85 7 7v13h11c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73V9c0-1.1-.9-2-2-2zM5 7H1v13h4V7z"></path></svg></span></button><button id="goog-gt-thumbDownButton" type="button" class="VIpgJd-yAWNEb-hvhgNd-bgm6sf" title="Tradução ruim" aria-label="Tradução ruim" aria-pressed="false"><span id="goog-gt-thumbDownIcon"><svg width="24" height="24" viewBox="0 0 24 24" focusable="false" class="VIpgJd-yAWNEb-hvhgNd-THI6Vb NMm5M"><path d="M3 17h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 24s7.09-6.85 7.17-7h5V4H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2zM17 6h3v9h-3V6zM3 13l3-7h9v10l-4.34 4.34L12 15H3v-2z"></path></svg></span><span id="goog-gt-thumbDownIconFilled"><svg width="24" height="24" viewBox="0 0 24 24" focusable="false" class="VIpgJd-yAWNEb-hvhgNd-THI6Vb NMm5M"><path d="M3 17h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 24s7.09-6.85 7.17-7V4H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2zm16 0h4V4h-4v13z"></path></svg></span></button></div></div><div id="goog-gt-votingHiddenPane" class="VIpgJd-yAWNEb-hvhgNd-aXYTce"><form id="goog-gt-votingForm" action="file://translate.googleapis.com/translate_voting?client=te_lib" method="post" target="votingFrame" class="VIpgJd-yAWNEb-hvhgNd-aXYTce"><input type="text" name="sl" id="goog-gt-votingInputSrcLang"><input type="text" name="tl" id="goog-gt-votingInputTrgLang"><input type="text" name="query" id="goog-gt-votingInputSrcText"><input type="text" name="gtrans" id="goog-gt-votingInputTrgText"><input type="text" name="vote" id="goog-gt-votingInputVote"></form><iframe name="votingFrame" frameborder="0" src="./evidence.relatório_files/saved_resource(1).html"></iframe></div></div></div>
+</body></html>
