@@ -1,0 +1,13 @@
+===================================================================
+LOGCAT EXCEPTION DUMP - HARDWARE: MOTOROLA ID: ZF5252JKFQ
+DATE: 2026-05-17 - QA RESPONSIBLE: LUCIANA
+===================================================================
+
+[❌ CT04 - STRESS MULTIMÍDIA 4K]
+05-17 14:32:10.155  2402  2402 F LINKER: CANNOT LINK EXECUTABLE "/system/bin/mediaserver": Fatal Exception SIGSEGV on Main Thread
+Exception in thread "main" java.lang.OutOfMemoryError: Rendering Heap Exhausted at 4K Resolution Buffer
+
+[❌ CT05 - RESILIÊNCIA OFFLINE]
+ANR in player.clouddy.online (player.clouddy.online/.MainActivity)
+PID: 8120
+Reason: Input dispatching timed out (Waiting because the focused window has not finished processing the input events)
