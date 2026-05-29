@@ -1,15 +1,23 @@
- 📱 Relatório Técnico de Engenharia de QA e Governança Mobile
-> **Status do Projeto:** Homologação Parcial Controlada (Não recomendado para produção)  
-> **Link Oficial do Repositório:** `https://github.com/LucianaOrli/teste-caixa-preta-automacao-clouddy`
+**💎 RESUMO EXECUTIVO**
 
+Este projeto consolida uma estratégia de Quality Engineering mobile orientada a **risco, governança e rastreabilidade, aplicada ao aplicativo ClouDDy em abordagem black-box executada em dispositivos Android físicos**.
+**A suíte de automação utiliza Pytest, ADB e observabilidade via Logcat, cobrindo validações funcionais, stress testing, resiliência offline e análise de estabilidade sob condições reais de degradação operacional**.
 
+**A avaliação segue princípios de classificação de criticidade, separação entre erro, defeito e falha, e governança de homologação, permitindo análise estruturada da confiabilidade do sistema em ambiente próximo à produção**.
+Os resultados demonstram conformidade parcial em fluxos básicos, porém evidenciam falhas críticas de estabilidade, segurança lógica, validação de entradas e **gerenciamento de recursos, incluindo crashes (SIGSEGV) e estados de ANR sob carga e desconectividade**.
+O sistema encontra-se em estado de homologação parcial controlada, não recomendado para produção até mitigação das não conformidades críticas identificadas.
+Decisão técnica: sistema não atende critérios de produção devido a falhas críticas de estabilidade e resiliência. 
 
- 🏛️ Governança e Ambiente Técnico
+ 
+ 📱 Relatório Técnico Governança de QA e Mobile
+ **Status do Projeto:** Homologação Parcial Controlada (Não recomendado para produção)  
+
+ Governança e Ambiente Técnico
 
  Informações de Emissão
 | Atributo de Governança | Detalhe Técnico |
 | :--- | :--- |
-| **Responsável Técnica** | Luciana |
+
 | **Projeto Avaliado** | ClouDDy (Abordagem Caixa-Preta) |
 | **Data de Emissão** | 17 de Maio de 2026 |
 | **Versão do Documento** | 1.0 — Governança Técnica Consolidada |
@@ -162,7 +170,7 @@ A suíte de automação gerou os artefatos de homologação que estão publicado
 * **Evidências Visuais (Hardware Físico):** [1.evidence.moto.png](./1.evidence.moto.png) e [2.evidence.moto.png](./2.evidence.moto.png) *(Prints reais capturados diretamente do dispositivo Motorola durante os estados de falha).*
 
 
-***Conclusão Executiva Final***
+**Conclusão Executiva Final**
 
 O aplicativo ClouDDy demonstra maturidade funcional satisfatória para fluxos básicos e de instalação, mas não possui resiliência ou segurança lógica adequadas para publicação em ambiente de produção.
 
